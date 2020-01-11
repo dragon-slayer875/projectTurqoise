@@ -2,7 +2,6 @@ import random
 import string
 q=string.ascii_letters
 r=string.punctuation
-s=string.digits
 n1=input('Enter the number of subjects you want:\n')
 
 while(n1=="" or n1 in q or n1 in r):
@@ -29,20 +28,8 @@ else:
 
 
 for i in range(n):
-    sub1=input('Enter the name of the subject:\n')
-    while(sub1=="" or sub1 in r or sub1 in s):
-        print("Try again")
-        sub1=input("Enter\n")
-    else:
-        sub=sub1
-
-    rep1=input('Enter the number of times you want it:\n')
-    while(rep1=="" or rep1 in q or rep1 in r):
-        print("Try again")
-        rep1=input("Enter\n")
-    else:
-        rep=int(rep1)
-
+    sub=input('Enter the name of the subject:\n')
+    rep=int(input('Enter the number of times you want it:\n'))
     tsub+=rep
     subjects.append(sub)
     for j in range(rep):
