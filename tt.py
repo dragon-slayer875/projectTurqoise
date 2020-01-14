@@ -1,42 +1,65 @@
 import random
-import string
-q=string.ascii_letters
-r=string.punctuation
-n1=input('Enter the number of subjects you want:\n')
+import tkinter as tk
 
-while(n1=="" or n1 in q or n1 in r):
-    print("Try again")
-    n1=input("Enter\n")
-else:
-    n=int(n1)
+#layout
+
+#functions
+def input_int():
+    while True:
+        args=input()
+        if args.isnumeric()==True:
+            args=int(args)
+            break
+        else:
+            print('Not a number. Try again')
+            continue
+    return args
+
+def input_name():
+    while True:
+        args=input()
+        if args.isalpha()==True:
+            args=args
+            break
+        else:
+            print('Not a name. Try again')
+            continue
+    return args
+
+#declarations
 main=[]
 main1=[]
 subjects=[]
 tsub=0
-iday1=input('Enter the number of days the school is open:\n')
-while(iday1=="" or iday1 in q or iday1 in r):
-    print("Try again")
-    iday1=input("Enter\n")
-else:
-    iday=int(iday1)
-iperiod1=input('Enter the number of periods in a day\n')
-while(iperiod1=="" or iperiod1 in q or iperiod1 in r):
-    print("Try again")
-    iperiod1=input("Enter\n")
-else:
-    iperiod=int(iperiod1)
+m=[]
+l=[]
 
+#data
+print('Enter the number of subjects you want:')
+n=input_int()
+
+print('Enter the number of days the school is open:')
+iday=input_int()
+
+print('Enter the number of periods in a day:')
+iperiod=input_int()
 
 for i in range(n):
-    sub=input('Enter the name of the subject:\n')
-    rep=int(input('Enter the number of times you want it:\n'))
+    print('Enter the name of the subject:')
+    sub=input_name()
+
+    print('Enter the number of times you want it:')
+    rep=input_int()
+
     tsub+=rep
     subjects.append(sub)
+
     for j in range(rep):
-            main.append(sub)
-            main1.append(sub)
-            
+        main.append(sub)
+        
+#working            
 for z in range(5):
+    main1.extend(main)
     if tsub>iday*iperiod:
         print('Number of periods are out of range.Try again.')
         
@@ -45,21 +68,20 @@ for z in range(5):
         l=[]
 
         for i in range(iday):
-                for j in range(iperiod):
+            for j in range(iperiod):
+                x=random.choice(main1)
+                l.append(x)
+                main1.remove(x)
+            for k in l:
+                if l.count(k)>2:
+                    l.remove(k)
+                    main1.append(k)
                     x=random.choice(main1)
                     l.append(x)
                     main1.remove(x)
-                for k in l:
-                    if l.count(k)>2:
-                        l.remove(k)
-                        main1.append(k)
-                        x=random.choice(main1)
-                        l.append(x)
-                        main1.remove(x)
-                m.append(l)
-                l=[]
+            m.append(l)
+            l=[]
 
-        main1.extend(main)
         r=len(m)
         c=len(m[0])
         for i in range(r):
@@ -68,5 +90,3 @@ for z in range(5):
             print()
         print()
         print()
-    m=[]
-    
