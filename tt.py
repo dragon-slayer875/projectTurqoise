@@ -7,7 +7,7 @@ import tkinter as tk
 def input_int():
     while True:
         args=input()
-        if args.isnumeric()==True:
+        if args.isnumeric():
             args=int(args)
             break
         else:
@@ -18,7 +18,7 @@ def input_int():
 def input_name():
     while True:
         args=input()
-        if args.isalpha()==True:
+        if args.isalpha():
             args=args
             break
         else:
@@ -40,6 +40,9 @@ n=input_int()
 
 print('Enter the number of days the school is open:')
 iday=input_int()
+if iday>6:
+    print("School can't be open on more than 6 days.\n Try aggain")
+    n=input_int()
 
 print('Enter the number of periods in a day:')
 iperiod=input_int()
@@ -56,17 +59,15 @@ for i in range(n):
 
     for j in range(rep):
         main.append(sub)
+        main1.append(sub)
         
-#working            
-for z in range(5):
-    main1.extend(main)
-    if tsub>iday*iperiod:
+#working
+if tsub>iday*iperiod:
         print('Number of periods are out of range.Try again.')
-        
-    else:
+else:
+    for z in range(5):
+        main1.extend(main)
         m=[]
-        l=[]
-
         for i in range(iday):
             for j in range(iperiod):
                 x=random.choice(main1)
